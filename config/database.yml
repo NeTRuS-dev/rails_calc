@@ -1,0 +1,19 @@
+default: &default
+  adapter: postgresql
+  encoding: unicode
+  username: <%= ENV['DB_USERNAME'] %>
+  password: <%= ENV['DB_PASSWORD'] %>
+  host: localhost
+  pool: <%= ENV.fetch("RAILS_MAX_THREADS") { 5 } %>
+
+development:
+  <<: *default
+  database: rails_learn_development
+test:
+  <<: *default
+  database: rails_learn_test
+production:
+  <<: *default
+  database: rails_learn_production
+  username: rails_learn
+  password: <%= ENV['RAILS_LEARN_DATABASE_PASSWORD'] %>
